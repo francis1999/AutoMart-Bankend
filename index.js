@@ -3,11 +3,10 @@ const express = require("express")
 const app = express();
 const helmet = require("helmet");
 const morgan = require("morgan");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 const cors = require("cors");
-
-
-
-
+dotenv.config();
 
 
 //middleware
@@ -17,10 +16,14 @@ app.use(helmet());
 app.use(morgan("common"));
 
 
-
-
-
-
+mongoose.connect(process.env.DATABASEURL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log("Database Connected Successfuly")
+}).catch(() => {
+    console.log("Opps!!! Error in Connection");
+}) 
 
 
 app.get("/", (req, res) => {
