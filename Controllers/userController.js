@@ -180,3 +180,112 @@ module.exports.Userlogin = async (req, res) => {
 
 }
 /*--------------------------User Login Code Ended-----------------------------*/
+
+
+
+
+/*--------------------------Admin Get single users detail start-----------------------------*/
+module.exports.getsingleuser = async (req, res) => {
+    const usersidentity = req.params.id
+    try {
+        const singleID = await User.findById(req.params.id)
+        res.status(200).json({
+            status: "success",
+            data: singleID,
+
+        })
+
+    }
+    catch (error) {
+        res.status(500).json({
+            status: "Failed",
+            message: "Error in Getting Users details"
+        })
+    }
+}
+
+/*--------------------------Admin Get single users detail end-----------------------------*/
+
+
+/*--------------------------Admin Get All users detail start-----------------------------*/
+module.exports.getallusers = async (req, res) => {
+
+    let query = {};
+    let qNew = req.query.new
+
+    if (req.query.firstname) {
+        query.firstname = req.query.firstname
+    } 
+
+    let total = await User.countDocuments(query);
+    let page = (req.query.page) ? parseInt(req.query.page) : 1;
+    let perPage = (req.query.perPage) ? parseInt(req.query.perPage) : 10;
+    let skip = (page - 1) * perPage;
+
+    query.push = ({
+        $skip: skip
+    });
+    query.push = ({
+        $limit: perPage
+    })
+
+    if (req.query.firstname) {
+        query.$or = [
+            { "firstname": { $regex: req.query.firstname, $options: 'i' } },
+
+        ]
+    } else if (req.query.lastname) {
+        query.$or = [
+            { "lastname": { $regex: req.query.lastname, $options: 'i' } },
+
+        ]
+    }
+
+    let diplayallUsers = await User.find(query)
+        .sort({ createdAt: -1 });
+    if (qNew) {
+        diplayallUsers = await User.find().sort({ createdAt: -1 })
+
+    }
+
+    return res.status(200).json({
+        message: "success",
+        noofUsers: diplayallUsers.length,
+        data: {
+
+            data: diplayallUsers,
+            meta: {
+                total: total,
+                currentPage: page,
+                perPage: perPage,
+                totalPages: Math.ceil(total / perPage)
+            }
+        }
+    })
+}
+
+/*--------------------------Admin Get all users detail End-----------------------------*/
+
+
+
+/*--------------------------Admin Delete single users detail start-----------------------------*/
+module.exports.deleteuserbyid = async (req, res) => {
+    const usersid = req.params.id
+    try {
+        await User.findByIdAndDelete(usersid)
+        res.status(200).json({
+            status: "success",
+            message: "User Deleted Successfully"
+        })
+    }
+    catch (error) {
+        console.log(error)
+        res.status(500).json({
+            status: "Failed",
+            message: "Error Occur"
+        })
+    }
+}
+/*--------------------------Admin delete single users detail end-----------------------------*/
+
+
