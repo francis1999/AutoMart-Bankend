@@ -100,3 +100,83 @@ module.exports.userregistration = async (req, res) => {
 
 /*-------------------------User Registration Code Ended----------------------------------*/
 
+
+/*--------------------------User Login Code Start-----------------------------*/
+module.exports.Userlogin = async (req, res) => {
+    let { email, password } = req.body
+    if (email == '' || password == '') {
+        res.status(500).json({
+            Status: "Failed",
+            message: "Empty Credentials Supplied!"
+        })
+    } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+        res.status(500).json({
+            status: "Failed",
+            message: "Invalid Email Name"
+        })
+    } else if (password.length < 8) {
+        res.status(500).json({
+            status: "Failed",
+            message: "Password Too Small"
+        })
+    } else {
+
+        User.find({ email })
+            .then(data => {
+                if (data.length) {
+                    if (!data[0].verified) {
+                        res.status(500).json({
+                            status: "Failed",
+                            message: "User has not been verified"
+                        })
+                    } else {
+                        const hashedPassword = data[0].password;
+                        const accessToken = jwt.sign({
+                            data
+                        }, process.env.SECRETK, { expiresIn: "1d" });
+                        bcrypt.compare(password, hashedPassword)
+                            .then(result => {
+                                if (result) {
+                                    res.status(200).json({
+                                        code:200,
+                                        status: "success",
+                                        message: "You have successfully Logged in",
+                                        token: accessToken,
+                                       
+                                    })
+                                } else {
+                                    res.status(200).json({
+                                        status: "success",
+                                        message: "Invalid Password",
+
+                                    })
+                                }
+                            })
+                            .catch((error) => {
+                                console.log(error)
+                                res.status(500).json({
+                                    status: "Failed",
+                                    message: "An error occur while comparing the password",
+                                })
+                            })
+                    }
+                } else {
+
+                    res.status(500).json({
+                        status: "Failed",
+                        message: "Invaid Credentials",
+                    })
+
+                }
+            })
+            .catch(error => {
+                res.status(500).json({
+                    status: "Failed",
+                    message: "Error Occur while trying to get existing Users",
+                })
+            })
+
+    }
+
+}
+/*--------------------------User Login Code Ended-----------------------------*/

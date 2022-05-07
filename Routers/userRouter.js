@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const { userregistration } = require("../Controllers/userController")
+const { userregistration, Userlogin } = require("../Controllers/userController")
 const { verifyToken, verifyTokenwithAuthorization, verifyTokenwithAdmin } = require("../Middleware/verifyToken");
 
 
 
 
 router.post('/userregistration', userregistration);
-
+router.post('/userlogin', Userlogin);
 
 
 
