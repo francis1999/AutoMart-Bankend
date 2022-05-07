@@ -6,7 +6,17 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const path = require("path")
 dotenv.config();
+
+
+
+// This is my Router Declaration
+const adminAuthRouter = require("./Routers/adminRouter")
+
+
+
+
 
 
 //middleware
@@ -25,6 +35,9 @@ mongoose.connect(process.env.DATABASEURL, {
     console.log("Opps!!! Error in Connection");
 }) 
 
+
+// This is my routes
+app.use("/api/admin", adminAuthRouter);
 
 app.get("/", (req, res) => {
     res.send("This is Auto Mart Application");
