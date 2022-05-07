@@ -4,7 +4,7 @@ const Car = require("../Models/carModel")
 
 
 
-
+/*------------------------------ Add cars start------------------*/
 module.exports.addcar = ("/", async (req, res) => {
     const newcar = await new Car({
         carimage: req.files,
@@ -33,8 +33,9 @@ module.exports.addcar = ("/", async (req, res) => {
         })
     }
 });
+/*------------------------------ Add cars end------------------*/
 
-
+/*------------------------------ Get all cars start------------------*/
 module.exports.Getallcar = ("/", async (req, res) => {
 
     let query = {};
@@ -99,7 +100,12 @@ module.exports.Getallcar = ("/", async (req, res) => {
    
 })
 
+/*------------------------------ Get all cars end------------------*/
 
+
+
+
+/*------------------------------ Get car by User Id Start------------------*/
 module.exports.GetCarbyUserID = async (req, res) => {
     try {
         const singleCar = await Car.find({ user_id: req.params.user_id })
@@ -116,9 +122,38 @@ module.exports.GetCarbyUserID = async (req, res) => {
         res.status(500).json({ error: "User Does not exit" })
     }
 }
+/*------------------------------ Get car by User Id end------------------*/
 
+/*------------------------------ Delete car by Id Start------------------*/
+module.exports.DeleteCar = ("/:id", async (req, res) => {
+    try {
+        await Car.findByIdAndDelete(req.params.id)
+        res.status(200).json({ message: "Car Deleted Successfully" })
+    } catch (err) {
+        res.status(500).json({ error: "Something Went Wrong" })
+    }
+});
+/*------------------------------ Delete car by Id end------------------*/
 
+/*------------------------------ Get car by Id Start------------------*/
+module.exports.GetCarbyID = ("/:id", async (req, res) => {
+    try {
+        const singleCar = await Car.findById(req.params.id)
+            .populate('brand')
+            .populate('model')
+            .populate('year')
+        res.status(200).json({
+            message: "success",
+            noofadvert: singleCar.length,
+            data: singleCar
+        })
 
+    } catch (err) {
+        res.status(500).json({ error: "Something Went Wrong" })
+    }
+})
+
+/*------------------------------ Get car by Id end------------------*/
 
 
 
