@@ -5,11 +5,11 @@ const upload = require("../Middleware/imageUploader")
 
 
 
-router.post('/addcar', upload.upload.array('carimage', 4), addcar)
-router.get('/viewcars', Getallcar)
-router.get('/GetCarbyUserID/:user_id', GetCarbyUserID);
-router.delete('/deletecar/:id', DeleteCar);
-router.get('/getcarbyid/:id', GetCarbyID);
+router.post('/addcar',verifyTokenwithAuthorization, upload.upload.array('carimage', 4), addcar)
+router.get('/viewcars',verifyTokenwithAuthorization, Getallcar)
+router.get('/GetCarbyUserID/:user_id',verifyToken, GetCarbyUserID);
+router.delete('/deletecar/:id',verifyTokenwithAuthorization, DeleteCar);
+router.get('/getcarbyid/:id',verifyTokenwithAuthorization, GetCarbyID);
 
 
 

@@ -67,7 +67,7 @@ module.exports.authlogin = async (req, res) => {
         //accesstoken generator
         const accessToken = jwt.sign({
             id: user._id,
-            role: user.role
+            isAdmin: user.isAdmin
         }, process.env.SECRETK, { expiresIn: "1d" });
 
         const { password, ...others } = user._doc;

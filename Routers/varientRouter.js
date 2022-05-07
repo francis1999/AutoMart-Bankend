@@ -3,10 +3,10 @@ const { addvarient, editvarient, deletevarient, getvarientbyid, getallvarient, }
 const { verifyToken, verifyTokenwithAuthorization, verifyTokenwithAdmin } = require("../Middleware/verifyToken");
 //const upload = require("../Middleware/imageUploader")
 
-router.post('/addvarient', addvarient)
-router.get('/getallvarient', getallvarient);
-router.get('/singlevarient/:id', getvarientbyid);
-router.delete('/deletevarient/:id', deletevarient);
-router.put('/editvarient/:id', editvarient);
+router.post('/addvarient',verifyTokenwithAdmin, addvarient)
+router.get('/getallvarient',verifyTokenwithAuthorization, getallvarient);
+router.get('/singlevarient/:id',verifyTokenwithAuthorization, getvarientbyid);
+router.delete('/deletevarient/:id',verifyTokenwithAdmin, deletevarient);
+router.put('/editvarient/:id',verifyTokenwithAdmin, editvarient);
 
 module.exports = router;
