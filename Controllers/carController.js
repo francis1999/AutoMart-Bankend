@@ -100,6 +100,27 @@ module.exports.Getallcar = ("/", async (req, res) => {
 })
 
 
+module.exports.GetCarbyUserID = async (req, res) => {
+    try {
+        const singleCar = await Car.find({ user_id: req.params.user_id })
+            .populate('brand')
+            .populate('model')
+            .populate('year')
+        res.status(200).json({
+            message: "success",
+            noofadvert: singleCar.length,
+            data: singleCar
+        })
+    }
+    catch (err) {
+        res.status(500).json({ error: "User Does not exit" })
+    }
+}
+
+
+
+
+
 
 
 
