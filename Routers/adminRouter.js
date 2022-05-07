@@ -7,6 +7,4 @@ router.post('/registration', upload.upload.single('adminpicture'), adminregistra
 router.post('/adminlogin', authlogin);
 
 
-
-
 module.exports = router;

@@ -13,6 +13,7 @@ dotenv.config();
 
 // This is my Router Declaration
 const adminAuthRouter = require("./Routers/adminRouter")
+const userRouter = require("./Routers/userRouter");
 
 
 
@@ -38,6 +39,7 @@ mongoose.connect(process.env.DATABASEURL, {
 
 // This is my routes
 app.use("/api/admin", adminAuthRouter);
+app.use("/api/user", userRouter);
 
 app.get("/", (req, res) => {
     res.send("This is Auto Mart Application");
