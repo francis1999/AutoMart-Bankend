@@ -31,7 +31,7 @@ module.exports.userregistration = async (req, res) => {
             message: "Invalid Email Name"
         })
     } else if (password.length < 8) {
-        res.status(500).json({
+        res.status(417).json({
             status: "Failed",
             message: "Password is too short"
         })
