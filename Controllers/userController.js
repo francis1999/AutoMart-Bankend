@@ -26,7 +26,7 @@ module.exports.userregistration = async (req, res) => {
             message: "Empty Input Fields!"
         })
     } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-        res.status(500).json({
+        res.status(400).json({
             status: "Failed",
             message: "Invalid Email Name"
         })
