@@ -110,12 +110,12 @@ module.exports.Userlogin = async (req, res) => {
             message: "Empty Credentials Supplied!"
         })
     } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-        res.status(500).json({
+        res.status(400).json({
             status: "Failed",
             message: "Invalid Email Name"
         })
     } else if (password.length < 8) {
-        res.status(500).json({
+        res.status(417).json({
             status: "Failed",
             message: "Password Too Small"
         })

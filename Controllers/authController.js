@@ -62,7 +62,7 @@ module.exports.authlogin = async (req, res) => {
         );
         const originalpassword = hashedPassword.toString(CryptoJS.enc.Utf8);
         originalpassword !== req.body.password &&
-            res.status(401).json("Invalid Password");
+            res.status(400).json("Invalid Password");
 
         //accesstoken generator
         const accessToken = jwt.sign({
