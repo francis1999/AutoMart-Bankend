@@ -110,7 +110,7 @@ module.exports.Userlogin = async (req, res) => {
             message: "Empty Credentials Supplied!"
         })
     } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-        res.status(400).json({
+        res.status(401).json({
             status: "Failed",
             message: "Invalid Email Name"
         })
@@ -145,7 +145,7 @@ module.exports.Userlogin = async (req, res) => {
                                        
                                     })
                                 } else {
-                                    res.status(200).json({
+                                    res.status(401).json({
                                         status: "success",
                                         message: "Invalid Password",
 
@@ -162,7 +162,7 @@ module.exports.Userlogin = async (req, res) => {
                     }
                 } else {
 
-                    res.status(500).json({
+                    res.status(401).json({
                         status: "Failed",
                         message: "Invaid Credentials",
                     })
