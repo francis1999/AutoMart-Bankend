@@ -1,4 +1,4 @@
-const { addmodel, getallmodel, getmodelbyid, editmodel, deleteModel } = require("../Controllers/modelController")
+const { addmodel, getallmodel, getmodelbyid, editmodel, deleteModel,GetModelbybrandID } = require("../Controllers/modelController")
 const router = require("express").Router();
 const upload = require("../Middleware/imageUploader")
 const { verifyToken, verifyTokenwithAuthorization, verifyTokenwithAdmin } = require("../Middleware/verifyToken");
@@ -12,6 +12,7 @@ router.get("/getallmodel",verifyTokenwithAuthorization, getallmodel);
 router.get("/getmodelbyid/:id",verifyTokenwithAuthorization, getmodelbyid);
 router.put("/editmodel/:id",verifyTokenwithAdmin, editmodel);
 router.delete("/deletemodel/:id",verifyTokenwithAdmin, deleteModel);
+router.get("/getmodelbybrandid/:brandId", GetModelbybrandID);
 
 
 

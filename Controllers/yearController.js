@@ -137,4 +137,19 @@ module.exports.getallyear = ("/", async (req, res) => {
     }
 })
 
+
+module.exports.GetYearbymodelID = async (req, res) => {
+    try {
+        const singleyear = await Year.find({ modelId: req.params.modelId })
+        res.status(200).json({
+            message: "success",
+            noofyear: singleyear.length,
+            data: singleyear
+        })
+    }
+    catch (err) {
+        res.status(500).json({ error: "Year Does not exit" })
+    }
+}
+
 /* module.exports = router */

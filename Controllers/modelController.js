@@ -125,16 +125,29 @@ module.exports.getallmodel = ("/", async (req, res) => {
     try {
         const allmodel = await Model.find()
             .populate("brandId")
-            //console.log(allsubCategory._id)
         res.status(200).json({
             message: "success",
             no_of_Model: allmodel.length,
             data: allmodel,
-            //subcategoryid:_id
         });
     } catch (err) {
         res.status(500).json({ error: "Something went Wrong" })
     }
 })
+
+
+module.exports.GetModelbybrandID = async (req, res) => {
+    try {
+        const singlemodel = await Model.find({ brandId: req.params.brandId })
+        res.status(200).json({
+            message: "success",
+            noofmodel: singlemodel.length,
+            data: singlemodel
+        })
+    }
+    catch (err) {
+        res.status(500).json({ error: "Model Does not exit" })
+    }
+}
 
 /* module.exports = router */
