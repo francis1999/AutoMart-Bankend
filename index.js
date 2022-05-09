@@ -59,6 +59,7 @@ app.get("/", (req, res) => {
     res.send("This is Auto Mart Application");
 })
 
+app.use('/uploads', express.static('uploads'))
 const port = process.env.PORT || 8084;
 
 app.listen(port, () => {
