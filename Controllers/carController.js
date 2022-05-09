@@ -86,16 +86,16 @@ module.exports.Getallcar = ("/", async (req, res) => {
     return res.status(200).json({
         message: "success",
         noofcars: diplayallCar.length,
-        data: {
+        
 
-            data: diplayallCar,
+            diplayallCar,
             meta: {
                 total: total,
                 currentPage: page,
                 perPage: perPage,
                 totalPages: Math.ceil(total / perPage)
             }
-        }
+        
     })
    
 })
