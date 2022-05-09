@@ -134,14 +134,19 @@ module.exports.Userlogin = async (req, res) => {
                         const accessToken = jwt.sign({
                             data
                         }, process.env.SECRETK, { expiresIn: "1d" });
+                        
                         bcrypt.compare(password, hashedPassword)
+                        
                             .then(result => {
                                 if (result) {
+                                    
                                     res.status(200).json({
                                         code:200,
                                         status: "success",
                                         message: "You have successfully Logged in",
                                         token: accessToken,
+                                        data
+
                                        
                                     })
                                 } else {
