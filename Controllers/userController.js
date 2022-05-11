@@ -293,4 +293,21 @@ module.exports.deleteuserbyid = async (req, res) => {
 }
 /*--------------------------Admin delete single users detail end-----------------------------*/
 
+module.exports.Logout = async (req, res) => {
+    try {
+        res.status(200).json({
+            status: "success",
+            message: "Logout"
+        })
+    }
+    catch (error) {
+        console.log(error)
+        res.status(500).json({
+            status: "Failed",
+            message: "Error Occur"
+        })
+    }
+}
+
+
 

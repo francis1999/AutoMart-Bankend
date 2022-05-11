@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { userregistration, Userlogin, getsingleuser,getallusers,deleteuserbyid } = require("../Controllers/userController")
+const { userregistration, Userlogin, getsingleuser,getallusers,deleteuserbyid,Logout } = require("../Controllers/userController")
 const { verifyToken, verifyTokenwithAuthorization, verifyTokenwithAdmin } = require("../Middleware/verifyToken");
 
 
@@ -10,6 +10,7 @@ router.post('/userlogin', Userlogin);
 router.get('/singleuser/:id',verifyTokenwithAdmin, getsingleuser);
 router.get('/getallusers',verifyTokenwithAdmin, getallusers);
 router.delete('/deleteuserbyid/:id',verifyTokenwithAdmin, deleteuserbyid);
+router.post('/Logout', Logout);
 
 
 
