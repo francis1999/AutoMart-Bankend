@@ -6,11 +6,11 @@ const { verifyToken, verifyTokenwithAuthorization, verifyTokenwithAdmin } = requ
 
 
 
-router.post("/addyear",verifyTokenwithAdmin, addyear);
-router.get("/getallyear",verifyTokenwithAuthorization, getallyear);
-router.get("/getyearbyid/:id",verifyTokenwithAuthorization, getyearbyid);
-router.put("/edityear/:id",verifyTokenwithAdmin, edityear);
-router.delete("/deleteyear/:id",verifyTokenwithAdmin, deleteyear);
+router.post("/addyear", addyear);
+router.get("/getallyear", getallyear);
+router.get("/getyearbyid/:id", getyearbyid);
+router.put("/edityear/:id", edityear);
+router.delete("/deleteyear/:id", deleteyear);
 router.get("/getyearbymodelid/:modelId", GetYearbymodelID);
 
 

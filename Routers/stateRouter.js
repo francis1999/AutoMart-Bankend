@@ -5,11 +5,11 @@ const { verifyToken, verifyTokenwithAuthorization, verifyTokenwithAdmin } = requ
 
 
 
-router.post('/addstate',verifyTokenwithAdmin, Addstate)
-router.get('/getallstate',verifyTokenwithAuthorization, Displayallstates);
-router.get('/getsinglestate/:id',verifyTokenwithAuthorization, getsinglestate);
-router.delete('/deletestate/:id',verifyTokenwithAdmin, deletestate);
-router.put('/updatestate/:id',verifyTokenwithAdmin, updatestate);
+router.post('/addstate', Addstate)
+router.get('/getallstate', Displayallstates);
+router.get('/getsinglestate/:id', getsinglestate);
+router.delete('/deletestate/:id', deletestate);
+router.put('/updatestate/:id', updatestate);
 
 
 
