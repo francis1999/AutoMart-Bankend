@@ -12,7 +12,6 @@ module.exports.addcar = ("/", async (req, res) => {
         brand: req.body.brand,
         description: req.body.description,
         year: req.body.year,
-        varient: req.body.varient,
         kms: req.body.kms,
         state: req.body.state,
         user_id: req.body.user_id,
