@@ -7,36 +7,11 @@ var SchemaTypes = mongoose.Schema.Types;
 const CarSchema = mongoose.Schema({
     description: { type: String },
 
-    brand: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Brand',
-        index: true
-    },
-    model: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Model',
-        index: true
-    },
-    year: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Year',
-        index: true
-    },
-    varient: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Varient',
-        index: true
-    },
-    kms: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Kilometer',
-        index: true
-    },
-    state: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'State',
-        index: true
-    },
+    brand: { type: String },
+    model: { type: String },
+    year: { type: String },
+    kms: { type: String },
+    state: { type: String },
     user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', index: true },
     carimage: { type: Array },
     condition: { type: String },
