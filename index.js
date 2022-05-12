@@ -7,8 +7,15 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const path = require("path")
-const bodyParser
+const bodyParser=require("body-parser")
 dotenv.config();
+
+app.use(bodyParser.urlencoded({
+    extended:false
+}));
+
+app.use(bodyParser.json())
+
 
 
 
@@ -22,7 +29,7 @@ const varientRouter = require("./Routers/varientRouter")
 const kilometerRouter = require("./Routers/kilometerRouter")
 const brandRouter = require('./Routers/brandRouter');
 const carRouter = require('./Routers/carRouter');
-const { parse } = require("path");
+
 
 
 
