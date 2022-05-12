@@ -1,6 +1,43 @@
-const router = require("express").Router();
+const express=require("express");
 const Car = require("../Models/carModel")
+const cloudinary=require("../uploads/cloudinary")
+const fs=require("fs");
+const upload=require("../uploads/imageUploader")
+const app=express();
 
+
+const bodyparser=require("body-parser");
+app.use(bodyparser.urlencoded({extended:false}))
+
+app.use=(bodyparser.json())
+
+/* 
+
+module.exports.testcar=('/', (req, res)=>{
+    const uploader = async(path)=> cloudinary.uploads(path)
+    if(req.method==='POST'){
+        const urls=[]
+        const files=req.files
+        for(const file of files){
+            const {path}=file
+            const newpath = uploader(path)
+            urls.push(newpath)
+            fs.unlinkSync(path)
+        }
+        res.status(201).json({
+            message:"Images uploaded successfully",
+            data:urls
+        })
+    }else{
+        res.status(405).json({
+            message:"Not Successful"
+        })
+    }
+})
+
+
+
+ */
 
 
 

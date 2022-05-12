@@ -1,6 +1,6 @@
 const { addmodel, getallmodel, getmodelbyid, editmodel, deleteModel,GetModelbybrandID } = require("../Controllers/modelController")
 const router = require("express").Router();
-const upload = require("../Middleware/imageUploader")
+
 const { verifyToken, verifyTokenwithAuthorization, verifyTokenwithAdmin } = require("../Middleware/verifyToken");
 
 
