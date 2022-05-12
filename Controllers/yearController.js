@@ -52,7 +52,7 @@ module.exports.addyear = async (req, res) => {
                 }
             })
             .catch(error => {
-                console.log(error)
+              
                 res.status(500).json({
                     status: "Failed",
                     message: "error",
@@ -125,7 +125,7 @@ module.exports.getallyear = ("/", async (req, res) => {
     try {
         const allyear = await Year.find()
             .populate("modelId")
-            //console.log(allsubCategory._id)
+            
         res.status(200).json({
             message: "success",
             no_of_years: allyear.length,

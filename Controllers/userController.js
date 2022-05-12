@@ -76,7 +76,7 @@ module.exports.userregistration = async (req, res) => {
                         })
 
                     }).catch((error) => {
-                        console.log(error)
+                       
                         res.status(424).json({
                             code:424,
                             Status: "Failed",
@@ -86,7 +86,7 @@ module.exports.userregistration = async (req, res) => {
                 }
 
             }).catch(error => {
-                console.log(error);
+                
                 res.status(424).json({
                     code:424,
                     status: "Failed",
@@ -158,7 +158,7 @@ module.exports.Userlogin = async (req, res) => {
                                 }
                             })
                             .catch((error) => {
-                                console.log(error)
+                               
                                 res.status(500).json({
                                     status: "Failed",
                                     message: "An error occur while comparing the password",
@@ -284,7 +284,7 @@ module.exports.deleteuserbyid = async (req, res) => {
         })
     }
     catch (error) {
-        console.log(error)
+       
         res.status(500).json({
             status: "Failed",
             message: "Error Occur"
@@ -301,7 +301,7 @@ module.exports.Logout = async (req, res) => {
         })
     }
     catch (error) {
-        console.log(error)
+       
         res.status(500).json({
             status: "Failed",
             message: "Error Occur"

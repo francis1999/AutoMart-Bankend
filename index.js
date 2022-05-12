@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const path = require("path")
+const bodyParser
 dotenv.config();
 
 
@@ -20,7 +21,8 @@ const yearRouter = require("./Routers/yearRouter")
 const varientRouter = require("./Routers/varientRouter")
 const kilometerRouter = require("./Routers/kilometerRouter")
 const brandRouter = require('./Routers/brandRouter');
-const carRouter = require('./Routers/carRouter')
+const carRouter = require('./Routers/carRouter');
+const { parse } = require("path");
 
 
 
@@ -32,6 +34,7 @@ app.use(express.json());
 app.use(cors());
 app.use(helmet());
 app.use(morgan("common"));
+
 
 
 mongoose.connect(process.env.DATABASEURL, {

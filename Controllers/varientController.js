@@ -52,7 +52,7 @@ module.exports.addvarient = async (req, res) => {
                 }
             })
             .catch(error => {
-                console.log(error)
+            
                 res.status(500).json({
                     status: "Failed",
                     message: "error",
@@ -125,7 +125,7 @@ module.exports.getallvarient = ("/", async (req, res) => {
     try {
         const allvarient = await Varient.find()
             .populate("yearId")
-            //console.log(allsubCategory._id)
+
         res.status(200).json({
             message: "success",
             no_of_varient: allvarient.length,

@@ -54,8 +54,8 @@ module.exports.Addstate=async(req,res)=>{
 module.exports.Displayallstates=async(req,res)=>{
     try{
         const getallstate = await State.find()
-        console.log(getallstate)
-        /* .populate("CityID") */
+        
+   
         
         res.status(200).json({
             status:"Success",
