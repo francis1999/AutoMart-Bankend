@@ -8,6 +8,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const path = require("path")
 const bodyParser=require("body-parser")
+const upload=require("./utils/multer")
 dotenv.config();
 
 app.use(bodyParser.urlencoded({
@@ -69,6 +70,16 @@ app.use("/api/car", carRouter);
 app.get("/", (req, res) => {
     res.send("This is Auto Mart Application");
 })
+
+
+/******** Add Car Route start */
+app.use('/api/addcar', require('./Controllers/carController'))
+/******** Add Car Route end */
+
+
+
+
+
 
 app.use('/uploads', express.static('uploads'))
 const port = process.env.PORT || 8084;
