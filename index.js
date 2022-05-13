@@ -74,6 +74,7 @@ app.get("/", (req, res) => {
 
 /******** Add Car Route start */
 app.use('/api/addcar', require('./Controllers/carController'))
+app.use('/api/Getallcar', require('./Controllers/carController'))
 /******** Add Car Route end */
 
 

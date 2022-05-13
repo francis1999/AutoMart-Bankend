@@ -75,7 +75,7 @@ router.post("/",upload.single('image'), async (req, res) => {
 
 
 /*------------------------------ Get all cars start------------------*/
-module.exports.Getallcar = ("/", async (req, res) => {
+router.get("/", async (req, res) => {
 
     let query = {};
     let qNew = req.query.new
