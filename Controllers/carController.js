@@ -170,8 +170,9 @@ router.get("/", (req, res)=>{
 /*------------------------------ Delete car by Id Start------------------*/
 router.delete("/", async (req, res) => {
     try {
-        await Car.findByIdAndDelete(req.params.id)
+        await Car.findOneAndRemove(req.params.id)
         res.status(200).json({ message: "Car Deleted Successfully" })
+        console.log(res)
     } catch (err) {
         res.status(500).json({ error: "Something Went Wrong" })
     }
