@@ -145,9 +145,9 @@ router.get("/", async (req, res) => {
 
 
 /*------------------------------ Get car by User Id Start------------------*/
-module.exports.GetCarbyUserID = async (req, res) => {
+router.get("/", (req, res)=>{
     try {
-        const singleCar = await Car.find({ user_id: req.params.user_id })
+        const singleCar =  Car.find({ user_id: req.params.user_id })
             .populate('brand')
             .populate('model')
             .populate('year')
@@ -160,7 +160,7 @@ module.exports.GetCarbyUserID = async (req, res) => {
     catch (err) {
         res.status(500).json({ error: "User Does not exit" })
     }
-}
+})
 /*------------------------------ Get car by User Id end------------------*/
 
 
@@ -168,7 +168,7 @@ module.exports.GetCarbyUserID = async (req, res) => {
 
 
 /*------------------------------ Delete car by Id Start------------------*/
-module.exports.DeleteCar = ("/:id", async (req, res) => {
+router.delete("/", async (req, res) => {
     try {
         await Car.findByIdAndDelete(req.params.id)
         res.status(200).json({ message: "Car Deleted Successfully" })
@@ -183,12 +183,10 @@ module.exports.DeleteCar = ("/:id", async (req, res) => {
 
 
 /*------------------------------ Get car by Id Start------------------*/
-module.exports.GetCarbyID = ("/:id", async (req, res) => {
+router.get("/", async (req, res) => {
     try {
         const singleCar = await Car.findById(req.params.id)
-            .populate('brand')
-            .populate('model')
-            .populate('year')
+          
         res.status(200).json({
             message: "success",
             noofadvert: singleCar.length,
