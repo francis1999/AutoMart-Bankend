@@ -35,7 +35,7 @@ module.exports.testcar=('/', (req, res)=>{
 
 
 /*------------------------------ Add cars start------------------*/
-router.post("/",upload.array('image'), async (req, res) => {
+router.post("/",upload.single('image'), async (req, res) => {
    
     try {
         const result=await cloudinary.uploader.upload(req.file.path)
