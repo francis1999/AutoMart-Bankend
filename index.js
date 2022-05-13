@@ -44,7 +44,10 @@ app.use(cors());
 app.use(helmet());
 app.use(morgan("common"));
 
-
+app.get('/cors', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.send({ "msg": "This has CORS enabled" })
+})
 
 
 
