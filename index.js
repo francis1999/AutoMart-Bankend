@@ -66,7 +66,7 @@ app.get("/", (req, res) => {
 /******** Add Car Route start */
 app.use('/api/addcar', require('./Controllers/carController'))
 app.use('/api/Getallcar', require('./Controllers/carController'))
-app.use('/api/getcarbyuserid/:user_id', require('./Controllers/carController'))
+app.use('/api/getcarbyuserid', require('./Controllers/carController'))
 app.use('/api/deletecar/:id', require('./Controllers/carController'))
 app.use('/api/getcarbyid/:id', require('./Controllers/carController'))
 /******** Add Car Route end */

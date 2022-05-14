@@ -151,12 +151,12 @@ router.get("/", async (req, res) => {
 
 
 /*------------------------------ Get car by User Id Start------------------*/
-router.get("/", (req, res)=>{
+router.get("/:user_id", async (req, res)=>{
     try {
-        const singleCar =  Car.find({ user_id: req.params.user_id })
-            .populate('brand')
+        const singleCar = await Car.find({ user_id:req.params.user_id })
+            /* .populate('brand')
             .populate('model')
-            .populate('year')
+            .populate('year') */
         res.status(200).json({
             message: "success",
             noofadvert: singleCar.length,
@@ -164,7 +164,7 @@ router.get("/", (req, res)=>{
         })
     }
     catch (err) {
-        res.status(500).json({ error: "User Does not exit" })
+        res.status(500).json(err)
     }
 })
 /*------------------------------ Get car by User Id end------------------*/
