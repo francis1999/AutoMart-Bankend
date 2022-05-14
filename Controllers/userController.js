@@ -146,8 +146,6 @@ module.exports.Userlogin = async (req, res) => {
                                         message: "You have successfully Logged in",
                                         token: accessToken,
                                         data
-
-                                       
                                     })
                                 } else {
                                     res.status(401).json({
@@ -193,7 +191,7 @@ module.exports.Userlogin = async (req, res) => {
 module.exports.getsingleuser = async (req, res) => {
     const usersidentity = req.params.id
     try {
-        const singleID = await User.findById(req.params.id)
+        const singleID = await User.findOne(req.params.id)
         res.status(200).json({
             status: "success",
             data: singleID,

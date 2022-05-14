@@ -4,43 +4,54 @@ const cloudinary=require("../utils/cloudinary")
 const upload=require("../utils/multer")
 const path = require("path")
 
-/* 
-
-module.exports.testcar=('/', (req, res)=>{
-    const uploader = async(path)=> cloudinary.uploads(path)
-    if(req.method==='POST'){
-        const urls=[]
-        const files=req.files
-        for(const file of files){
-            const {path}=file
-            const newpath = uploader(path)
-            urls.push(newpath)
-            fs.unlinkSync(path)
-        }
-        res.status(201).json({
-            message:"Images uploaded successfully",
-            data:urls
-        })
-    }else{
-        res.status(405).json({
-            message:"Not Successful"
-        })
-    }
-})
-
-
-
- */
-
-
 
 /*------------------------------ Add cars start------------------*/
-router.post("/",upload.single('image'), async (req, res) => {
+/* router.post("/",upload.single('image'), async (req, res) => {   
+    const {image,model,brand,description,year,kms,state,user_id,condition,price,status}=req.body;
+    try{
+        if(!image){
+            const uploadimage=await cloudinary.uploader.upload(req.file.path,{upload_preset:"automart"});
+            if(uploadimage){
+                const newcar = await new Car({
+                    image: uploadimage.secure_url,
+                    model,
+                    brand,
+                    description,
+                    year,
+                    kms,
+                    state,
+                    user_id,
+                    condition,
+                    price,
+                    status,
+                });
+                const savecars=await newcar.save();
+                res.statusCode(200).json({
+                    
+                        message:"Car Uploaded Successfully",
+                        data:newcar
+                   
+                })
+            }else{
+                res.status(500).json({
+                    message:"Image Doesnt enter into cloudinary folder"
+                })
+            }
+        }else{
+            res.status(500).json({
+                message:"Image Does not exist"
+            })
+        }
+    }catch(err){
+        res.status(500).json({
+            err
+        })
+    }
    
+}); */
+router.post("/",upload.single('image'), async (req, res) => {   
     try {
-        const result=await cloudinary.uploader.upload(req.file.path)
-        const result2=result.secure_url
-        
+        const result=await cloudinary.uploader.upload(req.file.path,{upload_preset:"automart"})      
         const newcar = await new Car({
             image: result.secure_url,
             model: req.body.model,
@@ -54,8 +65,6 @@ router.post("/",upload.single('image'), async (req, res) => {
             price: req.body.price,
             status: req.body.status,
         });
-        /* res.send(result) */
-        
         const carview = await newcar.save();
         res.status(200).json({
             message: "You have successfully Posted Car",
@@ -63,9 +72,6 @@ router.post("/",upload.single('image'), async (req, res) => {
         })
     } catch (err) {
         console.log(err)
-       /*  res.status(500).json({
-            error: err
-        }) */
     }
 });
 /*------------------------------ Add cars end------------------*/

@@ -7,7 +7,7 @@ const { verifyToken, verifyTokenwithAuthorization, verifyTokenwithAdmin } = requ
 
 router.post('/userregistration', userregistration);
 router.post('/userlogin', Userlogin);
-router.get('/singleuser/:id',verifyTokenwithAdmin, getsingleuser);
+router.get('/singleuser/me',verifyTokenwithAuthorization, getsingleuser);
 router.get('/getallusers',verifyTokenwithAdmin, getallusers);
 router.delete('/deleteuserbyid/:id',verifyTokenwithAdmin, deleteuserbyid);
 router.post('/Logout', Logout);
