@@ -17,9 +17,6 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json())
 
-
-
-
 // This is my Router Declaration
 const adminAuthRouter = require("./Routers/adminRouter")
 const userRouter = require("./Routers/userRouter");
@@ -30,13 +27,6 @@ const varientRouter = require("./Routers/varientRouter")
 const kilometerRouter = require("./Routers/kilometerRouter")
 const brandRouter = require('./Routers/brandRouter');
 const carRouter = require('./Routers/carRouter');
-
-
-
-
-
-
-
 
 //middleware
 app.use(express.json());
@@ -49,8 +39,6 @@ app.get('/cors', (req, res) => {
     res.send({ "msg": "This has CORS enabled" })
 })
 
-
-
 mongoose.connect(process.env.DATABASEURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -59,7 +47,6 @@ mongoose.connect(process.env.DATABASEURL, {
 }).catch(() => {
     console.log("Opps!!! Error in Connection");
 }) 
-
 
 // This is my routes
 app.use("/api/admin", adminAuthRouter);
@@ -76,7 +63,6 @@ app.get("/", (req, res) => {
     res.send("This is Auto Mart Application");
 })
 
-
 /******** Add Car Route start */
 app.use('/api/addcar', require('./Controllers/carController'))
 app.use('/api/Getallcar', require('./Controllers/carController'))
@@ -84,11 +70,6 @@ app.use('/api/getcarbyuserid/:user_id', require('./Controllers/carController'))
 app.use('/api/deletecar/:id', require('./Controllers/carController'))
 app.use('/api/getcarbyid/:id', require('./Controllers/carController'))
 /******** Add Car Route end */
-
-
-
-
-
 
 app.use('/uploads', express.static('uploads'))
 const port = process.env.PORT || 8084;
