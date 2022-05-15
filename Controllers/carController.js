@@ -49,7 +49,7 @@ const path = require("path")
     }
    
 }); */
-router.post("/",upload.single('image'), async (req, res) => {   
+router.post("/addcar",upload.single('image'), async (req, res) => {   
     try {
         const result=await cloudinary.uploader.upload(req.file.path,{upload_preset:"automart"})      
         const newcar = await new Car({
