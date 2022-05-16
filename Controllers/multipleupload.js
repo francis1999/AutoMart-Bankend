@@ -2,11 +2,12 @@
 const Car = require("../Models/carModel")
 
     const multipleFileUpload= async(req, res, next)=>{
-        let {model,brand,description,year,kms,state,user_id,condition,price} = req.body
+        let {model,brand,description,year,kms,state,user_id,condition,price,kilometer} = req.body
         model = model
         brand = brand
         description = description
         year=year
+        kilometer=kilometer
         kms=kms
         state=state
         user_id=user_id
