@@ -2,6 +2,26 @@
 const Car = require("../Models/carModel")
 
     const multipleFileUpload= async(req, res, next)=>{
+        let {model,brand,description,year,kms,state,user_id,condition,price} = req.body
+        model = model
+        brand = brand
+        description = description
+        year=year
+        kms=kms
+        state=state
+        user_id=user_id
+        condition=condition
+        price=price
+        if (price=='' || brand=='---Select Brand---' || model=='---Select Model---' || year =='---Select Year---' || kilometer =='---Select Kilometer---' || state=='---Select State---' ||  condition=='' || model == '' || brand == '' || description == '' || year == '' || kms=='' || state=='' || user_id=='') {
+            res.status(500).json({
+                status: "Failed",
+                message: "Empty Input Fields!"
+            })
+        }else{
+
+       
+
+
         try {
             let fileArray=[]
             req.files.forEach(element=>{
@@ -32,6 +52,7 @@ const Car = require("../Models/carModel")
         catch(error) {
                 res.status(400).send(error.message)
         }
+    }
     }
    
 
