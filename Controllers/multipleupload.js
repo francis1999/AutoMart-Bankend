@@ -15,14 +15,12 @@ const Car = require("../Models/carModel")
         price=price
         if (price=='' || brand=='---Select Brand---' || model=='---Select Model---' || year =='---Select Year---' || kilometer =='---Select Kilometer---' || state=='---Select State---' ||  condition=='' || model == '' || brand == '' || description == '' || year == '' || kms=='' || state=='' || user_id=='') {
             res.status(500).json({
-                status: "Failed",
+                data:{
+                    status: "Failed",
                 message: "Empty Input Fields!"
+                }
             })
         }else{
-
-       
-
-
         try {
             let fileArray=[]
             req.files.forEach(element=>{
