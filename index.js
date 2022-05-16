@@ -27,6 +27,7 @@ const varientRouter = require("./Routers/varientRouter")
 const kilometerRouter = require("./Routers/kilometerRouter")
 const brandRouter = require('./Routers/brandRouter');
 const carRouter = require('./Routers/carRouter');
+const multipleFileRouter = require('./Routers/multiplefileupload');
 
 //middleware
 app.use(express.json());
@@ -58,6 +59,7 @@ app.use("/api/kilometer", kilometerRouter);
 app.use("/api/brand", brandRouter);
 app.use("/api/model", modelRouter);
 app.use("/api/car", carRouter);
+app.use("/api/multiplefile", multipleFileRouter);
 
 app.get("/", (req, res) => {
     res.send("This is Auto Mart Application");

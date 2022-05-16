@@ -13,7 +13,7 @@ const CarSchema = mongoose.Schema({
     kms: { type: String },
     state: { type: String },
     user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', index: true },
-    image: { type: Array },
+    image: [Object],
     condition: { type: String },
     cloudinary_id: { type: String },
     price: { type: SchemaTypes.Double },
