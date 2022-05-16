@@ -14,12 +14,7 @@ const Car = require("../Models/carModel")
         condition=condition
         price=price
         if (price=='' || brand=='---Select Brand---' || model=='---Select Model---' || year =='---Select Year---' || kilometer =='---Select Kilometer---' || state=='---Select State---' ||  condition=='' || model == '' || brand == '' || description == '' || year == '' || kms=='' || state=='' || user_id=='') {
-            res.status(500).json({
-                data:{
-                    status: "Failed",
-                message: "Empty Input Fields!"
-                }
-            })
+            res.status(500).send("Empty Input Fields!")
         }else{
         try {
             let fileArray=[]
